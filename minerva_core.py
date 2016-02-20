@@ -276,3 +276,4 @@ if __name__ == '__main__':
         minerva.go_to_course_page(analyse)
         minerva.open_tool("document")
         minerva.get_all_documents()
+        
