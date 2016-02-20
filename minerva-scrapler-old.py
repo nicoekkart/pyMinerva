@@ -20,8 +20,8 @@ class bcolors:
 
 payload = {
     'action': 'login',
-    'username': secrets.USERNAME,
-    'password': secrets.PASSWORD
+    'username': secrets.username,
+    'password': secrets.password
 }
 
 
