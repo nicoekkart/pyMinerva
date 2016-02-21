@@ -49,6 +49,12 @@ class Course():
         """
         return self.__str__()
 
+    def __hash__(self):
+        return hash(self.__str__())
+
+    def __eq__(self, other):
+        return self.__str__() == other.__str__()
+
 
 def course_from_div(div):
     """ Creates a course from a div containing all the course info

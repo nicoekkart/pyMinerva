@@ -4,6 +4,7 @@
 import requests
 from bs4 import BeautifulSoup
 import course
+import tool
 import re
 import webbrowser
 import os
@@ -31,6 +32,7 @@ class Minerva():
             - Find a specific course
             - Go to course page
             - Use course tools:
+                - Get list of all tools
                 - Documents:
                     - Download all documents with same directory names
                     - Download single document
@@ -108,7 +110,7 @@ class Minerva():
         tool_divs = soup.select('div.tool.pointer')
         # Get the info required from the div
         tool_info = map(
-            lambda x: (x.img['title'], x.a['href'], 'new_item' in x['class']),
+            lambda x: tool.Tool(x.img['title'], x.a['href'], 'new_item' in x['class']),
             tool_divs)
         return list(tool_info)
 
@@ -128,11 +130,11 @@ class Minerva():
 
         # Find first satisfying tool, otherwise returns None
         answer = next(
-            filter(lambda x: tools_regex.search(x[0]), all_tools),
+            filter(lambda x: tools_regex.search(x.name), all_tools),
             None
         )
         # Go to the tool url
-        self.to_url(answer[1])
+        self.to_url(answer.url)
         return answer
 
     def get_all_documents(self):
