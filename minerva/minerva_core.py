@@ -171,8 +171,9 @@ class Minerva():
                 new_url = urljoin(old_url, link)
                 # Go to url
                 self.to_url(new_url)
-                # Create a folder with same name as on minerva
-                os.makedirs(title)
+                if not os.path.isdir(title):
+                    # Create a folder with same name as on minerva
+                    os.makedirs(title)
                 # Change current directory to this folder
                 os.chdir(title)
                 # Get all documents (recursive) of this folder
