@@ -66,4 +66,5 @@ target/
 .ipynb_checkpoints
 
 # Own files
-secrets.py
+secrets.py 
+log_data.p
