@@ -7,8 +7,6 @@ import pickle
 import sys
 import platform
 
-if platform.system() == "windows":
-    from example_programs import balloonTip
 from minerva_core import Minerva
 
 import secrets
@@ -29,6 +27,17 @@ def get_items_diff(old, new):
             changed[course] = cur_changed
     return changed
 
+
+def is_windows():
+    return os.name == 'nt'
+
+
+def windows_print(key, val):
+    from example_programs import balloonTip
+
+    balloonTip.balloon_tip(
+        "Minerva: " + key.title, "\n".join(val) + "\n"
+    )
 
 with Minerva(secrets.username, secrets.password) as minerva:
     # Get all the courses
@@ -73,12 +82,11 @@ with Minerva(secrets.username, secrets.password) as minerva:
     for key, val in course_changed.items():
         # Windows notification with changes
 
-        if platform.system() == "windows" :    # TODO: Check if it works in windows?
-            balloonTip.balloon_tip(
-                "Minerva: " + key.title, "\n".join(val) + "\n"
-                )
-        else:
-            print("Minerva: " + key.title, "\n".join(val) + "\n")
+        # TODO: Check if it works in windows?
+        if is_windows():
+            windows_print(key, val)
+
+        print("Minerva: " + key.title + "\n", "\n".join(val) + "\n")
     # necessary for pickle
     sys.setrecursionlimit(10000)
     # pickle the new items again
