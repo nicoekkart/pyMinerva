@@ -1,24 +1,36 @@
 """ This program download all files off a minerva course in a given directory
     Usage:
         py -m example_programs.download_all <course_needle> (<folder>)
-"""
+
+        with <course_needle> being the search string for your course, and (<folder>) being the path on your computer
+        where you want the files to be downloaded.
+        """
 from minerva_core import Minerva
 import sys
 import os
 import secrets
 
-# Search string for the course
-needle_course = sys.argv[1]
+def download_course(searchString=""):
+    # Search string for the course
+    needle_course = searchString
 
-if len(sys.argv) == 3:
-    if not os.path.isdir(sys.argv[2]):
-        os.makedirs(sys.argv[2])
-    # Change directory
-    os.chdir(sys.argv[2])
+    while needle_course is "":
+        needle_course = input("type a keyword for the course you want to download:")
+        if needle_course == "":
+            needle_course = None
 
-with Minerva(secrets.username, secrets.password) as minerva:
-    # Course object
-    course = minerva.find_first_course(needle_course)
-    minerva.go_to_course_page(course)
-    minerva.open_tool('docu')
-    minerva.get_all_documents()
+        directory = input("Select a directory where to download the course (Leave blank for current directory):")
+        if directory is not "":
+            if not os.path.isdir(directory):
+                os.makedirs(directory)
+            # Change directory
+            os.chdir(directory)
+
+    with Minerva(secrets.username, secrets.password) as minerva:
+        # Course object
+        course = minerva.find_first_course(needle_course)
+        minerva.go_to_course_page(course)
+        minerva.open_tool('docu')
+        minerva.get_all_documents()
+
+download_course()
