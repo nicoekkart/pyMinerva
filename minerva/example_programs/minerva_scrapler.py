@@ -2,19 +2,23 @@
     and returns them as windows notifications.
 """
 
-from minerva_core import Minerva
-import secrets
-import pickle
 import os
+import pickle
 import sys
-from example_programs import balloonTip
+import platform
+
+if platform.system() == "windows":
+    from example_programs import balloonTip
+from minerva_core import Minerva
+
+import secrets
 
 
 def get_items_diff(old, new):
     """ Finds difference between old and new pickle
     """
     changed = {}
-    # Loop trought the new one
+    # Loop trough the new one
     for course, new_items in new.items():
         # These are the old items for the current course
         old_items = old[course] if course in old else []
@@ -68,11 +72,14 @@ with Minerva(secrets.username, secrets.password) as minerva:
 
     for key, val in course_changed.items():
         # Windows notification with changes
-        balloonTip.balloon_tip(
-            "Minerva: " + key.title, "\n".join(val) + "\n"
-            )
 
-    # neccesary for pickle
+        if platform.system() == "windows" :    # TODO: Check if it works in windows?
+            balloonTip.balloon_tip(
+                "Minerva: " + key.title, "\n".join(val) + "\n"
+                )
+        else:
+            print("Minerva: " + key.title, "\n".join(val) + "\n")
+    # necessary for pickle
     sys.setrecursionlimit(10000)
     # pickle the new items again
     pickle.dump(course_new_items, open(FILENAME, "wb"))
