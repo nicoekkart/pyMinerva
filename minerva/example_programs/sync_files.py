@@ -6,7 +6,7 @@ import re
 
 with Minerva(secrets.username, secrets.password) as minerva:
     for needle, folder in m.items():
-        os.chdir(folder)
+        os.chdir(os.path.expanduser(folder))
         course = minerva.find_first_course(needle)
         minerva.go_to_course_page(course)
         all_tools = minerva.get_all_tools()
@@ -15,7 +15,7 @@ with Minerva(secrets.username, secrets.password) as minerva:
             filter(lambda x: docu_regex.search(x.name), all_tools),
             None
         )
-        if document_tool.is_new:
+        if True:
             minerva.open_tool('docu')
             minerva.get_all_documents()
             print('Course updated: ' + course.title)

@@ -1,0 +1,80 @@
+browser
+    > ls
+    Courses Main Page:
+        Wiskundige Analyse II (1)
+        Meetkunde en Lineaire algebra (2)
+        Natuurkunde I (3)
+        ...
+    > info 1
+        Course ID: E001221
+        Title: Wiskundige Analyse II
+        Year: (2015 - 2016)
+        Professor: Hennie De Schepper
+    > cd Wiskundige Analyse II % autocomplete
+    Moved into course "Wiskundige Analyse II"
+    > ls
+    Course page
+        Aankondigingen (1)
+        Documenten (2)
+        Links (3)
+        Forums (4)
+        Studiefiche (5)
+        Gebruikers (6)
+        Groepen (7)
+    > cd Aankondigingen
+    Moved into tool "Aankondigingen"
+    > latest
+        NPGE2: punten en oplossingen (1)
+        NPGE1: oplossingen beschikbaar (2)
+        kleine wijziging in kalender (3)
+        ...
+    > show 1
+        NPGE2: punten en oplossingen
+            Beste studenten,
+
+            De tweede test is verbeterd.
+            De punten zijn te vinden onder documenten.
+
+            Feedback heeft plaats op het monitoraat, vanaf morgen; de groepen hiertoe zijn reeds aangemaakt op de minervasite van het monitoraat.
+
+            Een mogelijke voorbeeldoplossing is reeds beschikbaar gesteld, voorzien van een voorbeeldpuntenverdeling. Ook hier werden door veel studenten alternatieve oplossingsmethodes uitgeprobeerd, die alle individueel gecorrigeerd werden; de voorbeeldpuntenverdeling is daarop dan uiteraard niet van toepassing.
+
+            Met vriendelijke groet,
+            Hennie De Schepper
+    > cd ..
+    Moved into course "Wiskundige Analyse II"
+    > ls
+    Course page
+        Aankondigingen (1)
+        Documenten (2)
+        Links (3)
+        Forums (4)
+        Studiefiche (5)
+        Gebruikers (6)
+        Groepen (7)
+    > cd 2
+        Moved into tool "Documenten"
+    > ls
+        bordoefeningen/
+        examen- en testvoorbeelden/
+        hoorcolleges/
+        image/
+        oefeningenbundels/
+        PCklassen/
+        kalender2016WAII
+        NPGE1opg
+        ...
+    > ls -l
+        bordoefeningen/     folder     14 items     2016-04-25 09:55
+        examen- en testvoorbeelden/
+        hoorcolleges/
+        image/
+        oefeningenbundels/
+        PCklassen/
+        kalender2016WAII    PDF        74.38 kB     2016-03-07 10:31
+        NPGE1opg
+        ...
+    > download kalender2016WAII .
+        Downloading kalender2016WAII ............................. DONE
+    > download bordoefeningen .
+        Downloading
